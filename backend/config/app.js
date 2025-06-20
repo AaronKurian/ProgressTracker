@@ -16,7 +16,9 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:5173', // Local development
-    'https://leetcodeprogresstracker.vercel.app/'
+    'http://localhost:3000', // Local development
+    'https://leetcodeprogresstracker.vercel.app', // Your Vercel frontend
+    'https://progresstracker-1q4h.onrender.com' // Your Render backend
   ],
   credentials: true,
   optionsSuccessStatus: 200
