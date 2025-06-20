@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { User, Lock, Eye, EyeOff, LogIn } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
+import { API_ENDPOINTS } from '../config/api'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ const Login = () => {
 
     setLoading(true)
     try {
-      const response = await fetch(`http://localhost:3000/api/auth/signin`, {
+      const response = await fetch(API_ENDPOINTS.AUTH_SIGNIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

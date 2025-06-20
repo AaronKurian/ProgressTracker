@@ -4,6 +4,7 @@ import Question from './components/Question'
 import './App.css'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Submit from './components/submitQuestion'
 
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
 
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
+          
+          <Route path="/submit" element={<Submit />} />
+
 
         </Routes>
       </div>

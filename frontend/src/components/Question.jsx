@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { API_ENDPOINTS } from '../config/api'
 
 const userProgress = {
     completed:[
@@ -55,7 +56,7 @@ const userProgress = {
   }
 
 function Question() {
-  const { id } = useParams()
+  const { titleSlug } = useParams()
   const navigate = useNavigate()
 
   const [expandedCompleted, setExpandedCompleted] = useState(null)
@@ -69,6 +70,21 @@ function Question() {
     setExpandedAttempted(expandedAttempted === name ? null : name)
   }
 
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const response = await fetch(`${API_ENDPOINTS.QUESTIONS}/${titleSlug}`)
+        const data = await response.json()
+        // Handle response...
+      } catch (error) {
+        console.error('Error fetching question:', error)
+      }
+    }
+    
+    if (titleSlug) {
+      fetchQuestion()
+    }
+  }, [titleSlug])
 
 
   return (
@@ -83,11 +99,11 @@ function Question() {
         
         <div className=" bg-white/10 backdrop-blur-md border border-white/20 shadow-xl  rounded-lg p-8">
           <h1 className="text-2xl font-bold text-white mb-4">
-            Question {id}
+            Question {titleSlug}
           </h1>
           
           <div className="text-gray-400">
-            <p>This is the content for question {id}.</p>
+            <p>This is the content for question {titleSlug}.</p>
           </div>
            <div className="mb-8">
             <h2 className="text-xl font-semibold mb-3 text-green-400">
